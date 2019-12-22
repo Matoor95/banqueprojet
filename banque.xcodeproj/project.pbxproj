@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		6E6EE2062388B320008FC861 /* banque */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = banque; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E6EE2092388B320008FC861 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		6E6EE2092388B320008FC861 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
