@@ -46,14 +46,14 @@ void fermer(FILE *fich){  //fonction pour fermer le fichier
     }
 }
 
-int chercher_compte(FILE *fich,int cpt,char nom[]){  //fonction to seek the desired account
+int chercher_compte(FILE *fich,int cpt){  //fonction to seek the desired account
     CLIENT client;
     int trouve=0; char ret;
     rewind(fich);//pointeur au debut
     while(!trouve){
         ret=fread(&client,sizeof(CLIENT),1,fich);
         if(ret==0)break;
-        if((client.numero_cmpt==cpt)||(strcmp(client.nom,nom))){
+        if(client.numero_cmpt==cpt){
             fseek(fich,-11*sizeof(CLIENT),SEEK_CUR);
             return 1;
         }
@@ -68,7 +68,7 @@ int ajout(FILE *fich){  //fonction to add an account
     printf("Ajout d'un client\n");
     printf("\tNumero de compte:");
     scanf("%d",&client.numero_cmpt);
-    if(chercher_compte(fich,client.numero_cmpt,client.nom)){
+    if(chercher_compte(fich,client.numero_cmpt)){
         fprintf(stderr,("Compte existant\n"));
         return 0;
     }
@@ -98,13 +98,12 @@ int ajout(FILE *fich){  //fonction to add an account
 
 void affiche(FILE *fich){   //fonction to show the account desired
     CLIENT cli;
-    char nom[MAXNOM];
     int cpt,ret;
     printf("Consultation par numero du compte ou nom  \n");
     printf("Numero du compte ou nom:");
     rewind(stdin);/* vide le tampon avant une lecture */
     scanf("%d",&cpt);
-    ret=chercher_compte(fich,cpt,nom);
+    ret=chercher_compte(fich,cpt);
     if(ret==0){
         printf("Compte inexistant...\n");
     }
@@ -129,7 +128,7 @@ void operation(FILE *fich){   //fonction for modifiying an account informations
     double somme;
     printf("Numero du compte:");
     scanf("%d",&cli.numero_cmpt);
-    if(!chercher_compte(fich,cli.numero_cmpt,cli.nom)){
+    if(!chercher_compte(fich,cli.numero_cmpt)){
         printf("Compte inexistant...\n");
         return;
     }
@@ -204,7 +203,7 @@ void menu(FILE *fic){  //main fonction
 //la fonction main
 int main(){
     FILE *fich = NULL;
-    printf("\t\t* MouhaSeck *");
+    printf("\t\t* Projet ELEMENTAIRE DE C REALISE PAR MouhaSeck *");
     ouvrir(&fich,"BANKACCOUNT.txt");
     menu(fich);
     fermer(fich);
